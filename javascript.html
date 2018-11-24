@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <p id='test'>ここに日時を表示します</p>
+
+    <ul id="list">
+    </ul>
+
+    <table>
+        <tr>
+            <td id="title"></td>
+            <td id="price"></td>
+            <td id="stock"></td>
+        </tr>
+    </table>
+
+    <script>
+        // ★書き換え
+        console.log(document.getElementById('test'));
+        document.getElementById('test').textContent = new Date();
+        
+        // ★function
+        var total = function(price){
+            var tax = 0.08;
+            return price + price * tax;
+        }
+        console.log(total(100) + '円');
+
+        var output = function(todo){
+            console.log("-----------------------");
+            for(var i=0; i<todo.length; i++){
+                console.log(todo[i]);
+
+                var li = document.createElement("li");
+                li.textContent = todo[i];
+                document.getElementById("list").appendChild(li);
+            }
+        }
+
+        // ★配列
+        var todo = ["買い物", "勉強", "仕事", "掃除"];
+
+        // 最後にデータを追加
+        todo.push("休む");
+        output(todo);
+
+        // 最後のデータを削除
+        todo.pop();
+        output(todo);
+
+        // 最初のデータを削除
+        todo.shift();
+        output(todo);
+
+        // ★オブジェクト
+        var jsbook = {title: "test", price: 1000, stock: 3, 
+            total: function(num){
+                return num * 1.08;
+            }};
+        document.getElementById("title").textContent = jsbook.title;
+        document.getElementById("price").textContent = jsbook.price + "円";
+        document.getElementById("stock").textContent = jsbook.stock;
+        console.log(jsbook.total(jsbook.price));
+
+    </script>
+
+    
+</body>
+</html>
