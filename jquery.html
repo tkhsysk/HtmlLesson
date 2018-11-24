@@ -10,6 +10,9 @@
             border: 4px solid pink;
             font-size: 36px;
         }
+        .hidden{
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -21,8 +24,16 @@
 
     <ul id="fruits">
         <li>みかん</li>
-        <li>りんご</li>
+        <li id="apple">りんご</li>
         <li>バナナ</li>
+    </ul>
+
+    <h3>1. Getting Started</h3>
+    <ul class="hidden">
+        <li>概要</li>
+        <li>インストール</li>
+        <li>操作</li>
+        <li>アンインストール</li>
     </ul>
 
     <script src="http://code.jquery.com/jquery-2.2.3.min.js"></script>
@@ -51,6 +62,14 @@
 
             var nashi = $('<li>').text('なし');
             $('#fruits > li:eq(2)').after(nashi);
+
+            // メニュー開閉 .next
+            $("h3").on("click", function(){
+                $(this).next().toggleClass("hidden");
+            })
+
+            // .find
+            console.log($("#fruits").find("#apple").text());
         })
     </script>
 </body>
